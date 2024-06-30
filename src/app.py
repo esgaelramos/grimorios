@@ -1,4 +1,7 @@
+"""Draft FastAPI app with Mangum adapter."""
+
 import os
+
 import uvicorn
 from fastapi import FastAPI
 from mangum import Mangum
@@ -9,6 +12,7 @@ app = FastAPI()
 
 @app.get("/")
 def index():
+    """Return a Simple Hello Grimorios."""
     return "Hello World Grimorios!"
 
 
