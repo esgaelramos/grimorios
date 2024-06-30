@@ -1,0 +1,15 @@
+# for presentation
+fastapi
+mangum
+uvicorn
+pyyaml
+python-decouple
+
+
+### START DEV REQUIREMENTS ###
+
+# for linting
+pre-commit
+flake8
+flake8-docstrings
+flake8-import-order

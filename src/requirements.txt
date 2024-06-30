@@ -1,3 +1,6 @@
+# for presentation
 fastapi
 mangum
 uvicorn
+pyyaml
+python-decouple
