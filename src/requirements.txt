@@ -4,3 +4,8 @@ mangum
 uvicorn
 pyyaml
 python-decouple
+
+# for business logic
+pydantic
+sqlalchemy
+python-multipart

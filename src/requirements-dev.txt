@@ -5,6 +5,10 @@ uvicorn
 pyyaml
 python-decouple
 
+# for business logic
+pydantic
+sqlalchemy
+python-multipart
 
 ### START DEV REQUIREMENTS ###
 

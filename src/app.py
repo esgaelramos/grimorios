@@ -13,6 +13,8 @@ from mangum import Mangum
 # Configure the system path
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
+from core.config import Settings  # noqa
+from core.database import init_db  # noqa
 from api.v1.routes import router as v1_router  # noqa
 from schemas.responses_schema import ErrorResponse  # noqa
 
@@ -23,6 +25,12 @@ logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(message)s',
     datefmt='%Y-%m-%d %H:%M:%S'
 )
+
+# Load and Instance the Wrapper Settings
+settings = Settings()
+
+# Initialize the database
+init_db()
 
 # Init the FastAPI application
 app = FastAPI()
