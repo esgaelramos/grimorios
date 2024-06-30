@@ -13,7 +13,7 @@ async def hello_world():
     """Hello World EndPoint."""
     return {
         "success": True,
-        "data": {"from Grimorios": "to the World"}
+        "data": {"from Grimorios": "to the Hello World"}
     }
 
 

@@ -11,7 +11,7 @@ def test_hello_world():
     """Test for the hello world endpoint of the API."""
     expected_response = {
         "success": True,
-        "data": {"from Grimorios": "to the World"},
+        "data": {"from Grimorios": "to the Hello World"},
         "message": "Successful Request",
     }
 
