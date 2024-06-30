@@ -4,5 +4,7 @@ ENV PYTHONUNBUFFERED=1
 COPY requirements.txt ./
 RUN pip3 install -r requirements.txt
 
-COPY app.py ./
-CMD [ "app.handler" ]
+# Important use /var/task as the working directory
+COPY . /var/task
+
+CMD ["app.handler"]

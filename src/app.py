@@ -1,19 +1,48 @@
 """Draft FastAPI app with Mangum adapter."""
 
 import os
+import sys
+import logging
 
 import uvicorn
 from fastapi import FastAPI
+from fastapi.responses import JSONResponse
+from fastapi.exceptions import HTTPException
 from mangum import Mangum
 
+# Configure the system path
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
+from api.v1.routes import router as v1_router  # noqa
+from schemas.responses_schema import ErrorResponse  # noqa
+
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S'
+)
+
+# Init the FastAPI application
 app = FastAPI()
 
+# Register the API routers (for versions)
+app.include_router(v1_router, prefix="/v1")
 
-@app.get("/")
-def index():
-    """Return a Simple Hello Grimorios."""
-    return "Hello Grimorios!"
+
+# Handle Exceptions with custom Response
+@app.exception_handler(HTTPException)
+async def exception_handler(request, exc):
+    """Handle Exceptions with custom Response."""
+    logging.error(exc.detail)
+    return JSONResponse(
+        status_code=exc.status_code,
+        content=ErrorResponse(
+            success=False,
+            message=exc.detail,
+        ).model_dump()
+    )
 
 
 handler = Mangum(app, lifespan="off")
