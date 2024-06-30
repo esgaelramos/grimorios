@@ -8,6 +8,13 @@ Project for FastAPI application on AWS Lambda using Terraform.
 | [Infrastructure](#infrastructure) |
 | [ExtraTools](#extratools) |
 
+For the project, we are going to use the next tools:
+- [FastAPI](https://fastapi.tiangolo.com/)
+- [PostgreSQL](https://www.postgresql.org/)
+- [Docker](https://www.docker.com/)
+- [Terraform](https://www.terraform.io/)
+- [AWS Lambda](https://aws.amazon.com/lambda/)
+
 ### In Local Environment
 
 Create a virtual environment
