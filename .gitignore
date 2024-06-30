@@ -8,3 +8,4 @@ env/
 # Development API
 __pycache__/
 *.pyc
+.coverage
