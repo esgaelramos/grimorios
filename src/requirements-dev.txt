@@ -13,3 +13,9 @@ pre-commit
 flake8
 flake8-docstrings
 flake8-import-order
+
+# for testing
+pytest
+pytest-cov
+pytest-responses
+responses
