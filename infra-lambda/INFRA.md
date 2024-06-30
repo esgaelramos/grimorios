@@ -132,6 +132,7 @@ The workflow is executed in the following order:
     + DON'T FORGET CREATE THE SECRETS IN THE REPOSITORY SETTINGS!
         + AWS_ACCESS_KEY_ID
         + AWS_SECRET_ACCESS_KEY
+        + CODECOV_TOKEN (for coverage)
     
 3. Install Terraform
     + Install Terraform on the runner.

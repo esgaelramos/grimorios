@@ -13,7 +13,7 @@ app = FastAPI()
 @app.get("/")
 def index():
     """Return a Simple Hello Grimorios."""
-    return "Hello World Grimorios!"
+    return "Hello Grimorios!"
 
 
 handler = Mangum(app, lifespan="off")

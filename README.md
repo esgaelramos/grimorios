@@ -1,7 +1,11 @@
 # grimorios
 Project for FastAPI application on AWS Lambda using Terraform. 
 
-| [Installation](#installation)
+[![codecov](https://codecov.io/gh/esgaelramos/grimorios/graph/badge.svg?token=DTS5NKYAE6)](https://codecov.io/gh/esgaelramos/grimorios)
+
+| [Installation](#installation) |
+| [Development](#development) |
+| [Infrastructure](#infrastructure) |
 | [ExtraTools](#extratools) |
 
 ### In Local Environment
@@ -38,8 +42,47 @@ docker-compose up --build
 > The docker-compose.yml file uses the Dockerfile.Local file 
 > to build the image.
 
+
+## Development
+
+For follow and respect the code style, will be used the nexts tools:
+
+### Linter
+
+Used for check the code style and syntax errors. 
+With the [pre-commit](https://pre-commit.com/) and 
+[flake8](https://flake8.pycqa.org/en/latest/).
+
+Execute the command for lint the code
+```bash
+pre-commit run --all-files
+```
+
+### Testing
+
+The tests will be used for check the code logic and errors.
+With [pytest](https://docs.pytest.org/) create the unit and 
+integration features tests.
+
+Execute the command for run the tests
+```bash
+pytest
+```
+
+## Infrastructure
+
+For the infrastructure, we are going to use Terraform.
+All the instructions are in the [INFRA.md](infra-lambda/INFRA.md) file.
+But, in summary, we use AWS Lambda for host this FastAPI application.
+And, for manage the state of the backend, we use an S3 bucket.
+
 ## ExtraTools
 Tree of the fundamental project
 ```bash
 tree -I "env|.git|.pytest_cache|__pycache__|.terraform" -la
 ```
+
+### Not Now
+- [ ] Add Gateway in Terraform with AWS
+- [ ] Configure custom domain with the API Gateway
+- [ ] Add Poetry for manage the dependencies
