@@ -15,6 +15,12 @@ provider "aws" {
   region  = "us-east-1"
 }
 
+# Load environment variables from .env file
+locals {
+  env_vars = {
+    for key, value in tomap(file("${path.module}/../.env")) : key => value
+  }
+}
 
 # --- ECR ---
 resource "aws_ecr_repository" "api" {
@@ -26,7 +32,6 @@ resource "aws_ecr_repository" "api" {
     scan_on_push = true
   }
 }
-
 
 # --- Build & push image ---
 locals {
@@ -53,7 +58,6 @@ data "aws_ecr_image" "latest" {
   depends_on      = [null_resource.image]
 }
 
-
 # --- IAM Role ---
 resource "aws_iam_role" "lambda" {
   name = "grimorios-lambda-role"
@@ -73,15 +77,14 @@ resource "aws_iam_role_policy_attachment" "lambda_logs" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
 }
 
-
 # --- Lambda ---
 resource "aws_cloudwatch_log_group" "api" {
   name              = "/aws/lambda/grimorios-api"
   retention_in_days = 14
 }
 
-resource "aws_lambda_function" "grimorios_api" {  # Changed name here
-  function_name    = "grimorios-api-function"  # Changed name here
+resource "aws_lambda_function" "grimorios_api" {
+  function_name    = "grimorios-api-function"
   role             = aws_iam_role.lambda.arn
   image_uri        = "${aws_ecr_repository.api.repository_url}:latest"
   package_type     = "Image"
@@ -89,7 +92,7 @@ resource "aws_lambda_function" "grimorios_api" {  # Changed name here
   timeout          = 10
 
   environment {
-    variables = {}
+    variables = local.env_vars
   }
 
   depends_on = [
@@ -99,10 +102,9 @@ resource "aws_lambda_function" "grimorios_api" {  # Changed name here
   ]
 }
 
-
 # --- Lambda Endpoint ---
 resource "aws_lambda_function_url" "api" {
-  function_name      = aws_lambda_function.grimorios_api.function_name  # Changed name here
+  function_name      = aws_lambda_function.grimorios_api.function_name
   authorization_type = "NONE"
 
   cors {

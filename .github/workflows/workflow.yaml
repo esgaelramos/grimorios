@@ -65,6 +65,10 @@ jobs:
         terraform init
 
     - name: Terraform Apply
+      env:
+        APP_ENV: 'prod'
+        DATABASE_URL_PROD: ${{ secrets.DATABASE_URL }}
+
       run: |
         cd infra-lambda/
         terraform apply -auto-approve
