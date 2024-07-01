@@ -15,10 +15,22 @@ provider "aws" {
   region  = "us-east-1"
 }
 
-# Load environment variables from .env file
+# Environment variables for Lambda function
+variable "database_url" {
+  description = "Database URL"
+  type        = string
+}
+
+variable "app_env" {
+  description = "App Environment"
+  type        = string
+}
+
+
 locals {
   env_vars = {
-    for key, value in tomap(file("${path.module}/../.env")) : key => value
+    APP_ENV   = var.app_env
+    DATABASE_URL_PROD = var.database_url
   }
 }
 
