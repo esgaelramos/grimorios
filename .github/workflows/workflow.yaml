@@ -71,4 +71,4 @@ jobs:
 
       run: |
         cd infra-lambda/
-        terraform apply -auto-approve -var "database_url=$DATABASE_URL" -var "app_env=$APP_ENV"
+        terraform apply -auto-approve -var "database_url=$DATABASE_URL_PROD" -var "app_env=$APP_ENV"
