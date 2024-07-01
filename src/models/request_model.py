@@ -8,6 +8,7 @@ class Request(Base):
     """Model for the User Table in the DataBase."""
 
     __tablename__ = "requests"
+    __table_args__ = {'extend_existing': True}
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String(20))
@@ -23,6 +24,7 @@ class Grimorio(Base):
     """Model for the Grimorio Table in the DataBase."""
 
     __tablename__ = "grimorios"
+    __table_args__ = {'extend_existing': True}
 
     id = Column(Integer, primary_key=True, index=True)
     type_trebol = Column(String(20))
