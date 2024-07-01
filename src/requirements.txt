@@ -4,6 +4,7 @@ mangum
 uvicorn
 pyyaml
 python-decouple
+psycopg2-binary
 
 # for business logic
 pydantic

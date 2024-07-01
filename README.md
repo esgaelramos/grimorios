@@ -33,6 +33,16 @@ Install the requirements
 pip install -r src/requirements-dev.txt
 ```
 
+Copy the environment variables
+```bash
+cp .env.example .env
+```
+
+Set the environment variables
+```bash
+export APP_ENV='dev'
+```
+
 Run the application
 ```bash
 python src/app.py
@@ -40,7 +50,7 @@ python src/app.py
 
 ### In Docker (Compose) Environment
 
-Build and Up the docker-compose (inside src folder)
+Build and Up the docker-compose
 ```bash
 docker-compose up --build
 ```
@@ -98,13 +108,14 @@ Here, the routes and endpoints are defined. Handles requests and responses.
 
 ### Business Logic Layer
 Manage the business logic of the application, and the validation of input 
-and output data. Here, the ORM models are defined.
-+ `src/models/` | Contains the ORM models, represent the database relations.
+and output data. Here, the services are defined.
++ `src/services/` | Define the services for the business logic.
 + `src/schemas/`| Define the schemas for validate the input and output data.
 
 ### Data Access Layer
 Manage the database connections and transactions. Here, the configuration
-and sessions are defined. Following the ACID properties.
+and sessions are defined. Following the ACID properties. 
++ `src/models/` | Contains the ORM models, represent the database relations.
 + `src/core/database.py` | Gest the database connection and sessions.
 
 ### Others Inside Features

@@ -4,14 +4,20 @@ services:
   app:
     build:
       context: .
-      dockerfile: Dockerfile.Local
+      dockerfile: src/Dockerfile.Local
     ports:
       - "8000:8000"
     volumes:
       - .:/app
     environment:
+      - APP_ENV=dev
       - PYTHONUNBUFFERED=1
-    
+      - DATABASE_URL_DEV=postgresql+psycopg2://postgres:postgres@db/grimorios
+      - DATABASE_URL_PROD=postgresql+psycopg2://postgres:postgres@db/grimorios
+    depends_on:
+      - db
+    restart: unless-stopped
+
   db:
     image: postgres:14
     environment:
@@ -22,7 +28,7 @@ services:
       - "5488:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./utils/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./src/utils/init.sql:/docker-entrypoint-initdb.d/init.sql
 
 volumes:
   postgres_data:
