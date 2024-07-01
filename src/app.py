@@ -26,14 +26,20 @@ logging.basicConfig(
     datefmt='%Y-%m-%d %H:%M:%S'
 )
 
+
 # Load and Instance the Wrapper Settings
 settings = Settings()
 
-# Initialize the database
-init_db()
-
 # Init the FastAPI application
 app = FastAPI()
+
+
+# Initialize the database
+@app.on_event("startup")
+def on_startup():
+    """Initialize the database on startup."""
+    init_db()
+
 
 # Register the API routers (for versions)
 app.include_router(v1_router, prefix="/v1")

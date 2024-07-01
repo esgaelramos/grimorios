@@ -25,11 +25,10 @@ class AppConfig:
 
     def _load_config(self):
         """Load the application configuration from a YAML file."""
-        current_dir = os.path.dirname(os.path.abspath(__file__)) 
+        current_dir = os.path.dirname(os.path.abspath(__file__))
 
-        path_config_yaml = config(
-            'PATH_CONFIG_YAML', default=f'{current_dir}/config.yaml'
-        )
+        path_config_yaml = f'{current_dir}/config.yaml'
+
         env = config('APP_ENV', default='dev')
 
         with open(path_config_yaml, "r") as file:
