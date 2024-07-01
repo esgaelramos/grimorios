@@ -55,7 +55,7 @@ class Settings:
         """Init the application configuration."""
         self.app_config = AppConfig().config
 
-    def __getattr__(self, name):    
+    def __getattr__(self, name):  # pragma: no cover
         """Get the application configuration attribute."""
         return self.app_config.get(name, None)
 
