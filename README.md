@@ -1,5 +1,5 @@
 # grimorios
-Project for FastAPI application on AWS Lambda using Terraform. 
+Stage of Project for FastAPI application on AWS Lambda using Terraform. 
 
 [![codecov](https://codecov.io/gh/esgaelramos/grimorios/graph/badge.svg?token=DTS5NKYAE6)](https://codecov.io/gh/esgaelramos/grimorios)
 
